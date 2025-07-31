@@ -4,7 +4,7 @@ import { Outlet, useSearchParams } from 'react-router-dom'
 const Users = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const showActiveUsers = searchParams.get('filter')==='active'
+    const showActiveUsers = searchParams.get('filter') === 'active'
     return (
         <div>
             <h2>User 1</h2>
@@ -15,7 +15,7 @@ const Users = () => {
                 <button onClick={() => setSearchParams({ filter: 'active' })}>Active Users</button>
                 <button onClick={() => setSearchParams({})}>Reset Filter</button>
             </div>
-{showActiveUsers?(<h2>Showing active users</h2>):(<h2> Showing all users</h2>)}
+            {showActiveUsers ? (<h2>Showing active users</h2>) : (<h2> Showing all users</h2>)}
         </div >
     )
 }
