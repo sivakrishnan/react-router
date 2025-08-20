@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { useAuth } from './auth'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 function Login() {
 
     const [user, setUser] = useState('')
     const auth = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const redirectPath = location.state?.path || '/'
 
     const handleLogin = () => {
-        auth.Login(user)
-        navigate('/')
+        auth.login(user)
+        navigate(redirectPath, { replace: true })
     }
     return (
         <div>
@@ -18,7 +21,7 @@ function Login() {
                 Username:{' '}
                 <input type='text' onChange={(e) => setUser(e.target.value)}></input>
             </label>
-            <button onClick={handleLogin}></button>
+            <button onClick={handleLogin}>Login</button>
         </div>
     )
 }
